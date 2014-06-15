@@ -1,17 +1,18 @@
-﻿using System;
+﻿using System.ComponentModel;
 using System.Timers;
-using System.Windows;
-using System.Windows.Input;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
+using PostalService.Engine;
 
 namespace PostalService.UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    // ReSharper disable once UnusedMember.Global
+    public partial class MainWindow
     {
-        private readonly Timer _mainTimer = new Timer(100);
-
         public MainWindow()
         {
             InitializeComponent();
@@ -22,17 +23,29 @@ namespace PostalService.UI
 
         private void MainTimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            var s = new Random();
-            MainPolyline.Points.Add(new Point(s.NextDouble() + 100, s.NextDouble() * 100));
+            Dispatcher.Invoke(ShowWorldState);
         }
 
-        private void Canvas_MouseMove(object sender, MouseEventArgs e)
+        private void ShowWorldState()
         {
-            MainPolyline.Points.Add(e.GetPosition(MainCanvas));
-            var s = e.GetPosition(MainCanvas);
-            s.X -= 10;
-            s.Y -= 50;
-            MainPolyline2.Points.Add(s);
+            var worldState = _engineFacade.GetState();
+            //MainCanvas.Children.Clear();
+            foreach (var package in worldState.Packages)
+            {
+                var rectangle = new Rectangle { Stroke = Brushes.Red, Width = 3, Height = 3 };
+                Canvas.SetLeft(rectangle, package.Location.X - 1);
+                Canvas.SetTop(rectangle, package.Location.Y - 1);
+                MainCanvas.Children.Add(rectangle);
+            }
+        }
+
+        private readonly Timer _mainTimer = new Timer(100);
+
+        private readonly EngineFacade _engineFacade = new EngineFacade();
+
+        private void MainWindowOnClosing(object sender, CancelEventArgs e)
+        {
+            _engineFacade.Dispose();
         }
     }
 }

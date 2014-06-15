@@ -1,9 +1,10 @@
 ﻿<Window x:Class="PostalService.UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="500" Width="500">
-    <Canvas x:Name="MainCanvas" Background="#00FFFFFF" MouseMove="Canvas_MouseMove">
-        <Polyline x:Name="MainPolyline" Stroke="Red" StrokeThickness="5"/>
-        <Polyline x:Name="MainPolyline2" Stroke="Green" StrokeThickness="5"/>
+        Title="MainWindow" 
+        Width="500"
+        Height="500"
+        Closing="MainWindowOnClosing">
+    <Canvas x:Name="MainCanvas" Background="#00FFFFFF">
     </Canvas>
 </Window>
