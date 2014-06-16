@@ -29,13 +29,21 @@ namespace PostalService.UI
         private void ShowWorldState()
         {
             var worldState = _engineFacade.GetState();
-            //MainCanvas.Children.Clear();
+            MainCanvas.Children.Clear();
             foreach (var package in worldState.Packages)
             {
-                var rectangle = new Rectangle { Stroke = Brushes.Red, Width = 3, Height = 3 };
+                var rectangle = new Rectangle { Fill = Brushes.Red, Width = 3, Height = 3 };
                 Canvas.SetLeft(rectangle, package.Location.X - 1);
                 Canvas.SetTop(rectangle, package.Location.Y - 1);
                 MainCanvas.Children.Add(rectangle);
+            }
+
+            foreach (var postman in worldState.Postmans)
+            {
+                var ellipse = new Ellipse { Fill = Brushes.Green, Width = 5, Height = 5 };
+                Canvas.SetLeft(ellipse, postman.Location.X - 3);
+                Canvas.SetTop(ellipse, postman.Location.Y - 3);
+                MainCanvas.Children.Add(ellipse);
             }
         }
 

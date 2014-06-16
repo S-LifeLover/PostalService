@@ -1,8 +1,8 @@
 ﻿namespace PostalService.Engine.Entities
 {
-    public sealed class Package
+    public sealed class Postman
     {
-        public Package(Location location)
+        public Postman(Location location)
         {
             Location = location;
         }

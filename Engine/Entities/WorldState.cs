@@ -7,6 +7,7 @@ namespace PostalService.Engine.Entities
         public WorldState()
         {
             Packages = new List<Package>();
+            Postmans = new List<Postman>();
 
             // TODo: настроить
             Width = 500;
@@ -18,5 +19,7 @@ namespace PostalService.Engine.Entities
         public int Height { get; private set; }
 
         public IList<Package> Packages { get; private set; }
+
+        public IList<Postman> Postmans { get; private set; }
     }
 }

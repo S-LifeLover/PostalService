@@ -9,6 +9,10 @@ namespace PostalService.Engine
         {
             _worldState = new WorldState();
             _packageGenerator = new PackageGenerator(_worldState);
+
+            // ToDO: заменить на фабрику
+            var worldStateInitializer = new WorldStateInitializer(_worldState);
+            worldStateInitializer.Initialize();
         }
 
         public WorldState GetState()
