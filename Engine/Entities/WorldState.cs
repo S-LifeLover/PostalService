@@ -4,19 +4,18 @@ namespace PostalService.Engine.Entities
 {
     public sealed class WorldState
     {
-        public WorldState()
+        public WorldState(double width, double height)
         {
             Packages = new List<Package>();
             Postmans = new List<Postman>();
 
-            // TODo: настроить
-            Width = 500;
-            Height = 500;
+            Width = width;
+            Height = height;
         }
 
-        public int Width { get; private set; }
+        public double Width { get; private set; }
 
-        public int Height { get; private set; }
+        public double Height { get; private set; }
 
         public IList<Package> Packages { get; private set; }
 

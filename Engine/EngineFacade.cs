@@ -7,12 +7,10 @@ namespace PostalService.Engine
     {
         public EngineFacade()
         {
-            _worldState = new WorldState();
-            _packageGenerator = new PackageGenerator(_worldState);
+            var worldStateFactory = new WorldStateFactory();
+            _worldState = worldStateFactory.Create();
 
-            // ToDO: заменить на фабрику
-            var worldStateInitializer = new WorldStateInitializer(_worldState);
-            worldStateInitializer.Initialize();
+            _packageGenerator = new PackageGenerator(_worldState);
         }
 
         public WorldState GetState()

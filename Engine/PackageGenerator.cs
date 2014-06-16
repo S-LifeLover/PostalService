@@ -25,8 +25,8 @@ namespace PostalService.Engine
 
         private Package GeneratePackage()
         {
-            var x = _random.Next(0, _worldState.Width);
-            var y = _random.Next(0, _worldState.Height);
+            var x = _random.NextDouble() * _worldState.Width;
+            var y = _random.NextDouble() * _worldState.Height;
             return new Package(new Location(x, y));
         }
 
