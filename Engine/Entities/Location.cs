@@ -2,18 +2,14 @@
 {
     public sealed class Location
     {
-        public Location(int x, int y)
+        public Location(double x, double y)
         {
-            _x = x;
-            _y = y;
+            X = x;
+            Y = y;
         }
 
-        private readonly int _x;
+        public double X { get; private set; }
 
-        public int X { get { return _x; } }
-
-        private readonly int _y;
-
-        public int Y { get { return _y; } }
+        public double Y { get; private set; }
     }
 }
