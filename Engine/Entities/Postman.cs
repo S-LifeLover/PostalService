@@ -15,6 +15,7 @@ namespace PostalService.Engine.Entities
 
         public Location Location { get; private set; }
 
+        // ToDo: Может как-то сделать через стратегии или типа того?
         public Location? Destination { get; private set; }
 
         public Package Package { get; private set; }
@@ -33,13 +34,14 @@ namespace PostalService.Engine.Entities
             Destination = location;
         }
 
-        private void TakePackage(Package package)
+        public void TakePackage(Package package)
         {
-            if (Location != package.Location)
-                // ToDo: оформить ошибку как положено
+            // ToDo: коряво
+            if (Package != null)
                 throw new Exception();
 
             Package = package;
+            Destination = package.Destination;
         }
     }
 }

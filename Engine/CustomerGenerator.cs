@@ -4,9 +4,9 @@ using PostalService.Engine.Entities;
 
 namespace PostalService.Engine
 {
-    internal sealed class PackageGenerator : IDisposable
+    internal sealed class CustomerGenerator : IDisposable
     {
-        internal PackageGenerator(WorldState worldState)
+        internal CustomerGenerator(WorldState worldState)
         {
             _worldState = worldState;
             _random = new Random();
@@ -20,14 +20,20 @@ namespace PostalService.Engine
 
         private void TimerCallback(object state)
         {
-            _worldState.Packages.Add(GeneratePackage());
+            var package = GeneratePackage();
+            _worldState.Customers.Add(GenerateCustomer(package));
+        }
+
+        private Customer GenerateCustomer(Package package)
+        {
+            var location = RandomLocation();
+            return new Customer(location, package);
         }
 
         private Package GeneratePackage()
         {
-            var location = RandomLocation();
             var destination = RandomLocation();
-            return new Package(location, destination);
+            return new Package(destination);
         }
 
         private Location RandomLocation()

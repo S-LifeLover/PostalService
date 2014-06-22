@@ -30,20 +30,20 @@ namespace PostalService.UI
         {
             var worldState = _engineFacade.GetState();
             MainCanvas.Children.Clear();
-            foreach (var package in worldState.Packages)
+            foreach (var customer in worldState.Customers)
             {
                 var locationRec = new Rectangle { Fill = Brushes.Red, Width = 3, Height = 3 };
-                Canvas.SetLeft(locationRec, package.Location.X - 1);
-                Canvas.SetTop(locationRec, package.Location.Y - 1);
+                Canvas.SetLeft(locationRec, customer.Location.X - 1);
+                Canvas.SetTop(locationRec, customer.Location.Y - 1);
                 MainCanvas.Children.Add(locationRec);
 
                 var destinationLine = new Line
                 {
                     Stroke = new SolidColorBrush(Colors.Yellow),
-                    X1 = package.Location.X,
-                    Y1 = package.Location.Y,
-                    X2 = package.Destination.X,
-                    Y2 = package.Destination.Y
+                    X1 = customer.Location.X,
+                    Y1 = customer.Location.Y,
+                    X2 = customer.Package.Destination.X,
+                    Y2 = customer.Package.Destination.Y
                 };
                 MainCanvas.Children.Add(destinationLine);
             }

@@ -42,12 +42,13 @@
   <ItemGroup>
     <Content Include="ToDo.txt" />
     <Compile Include="EngineFacade.cs" />
+    <Compile Include="Entities\Customer.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Entities\Postman.cs" />
     <Compile Include="Entities\Package.cs" />
     <Compile Include="PostmanManager.cs" />
     <Compile Include="WorldStateFactory.cs" />
-    <Compile Include="PackageGenerator.cs" />
+    <Compile Include="CustomerGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\WorldState.cs" />
   </ItemGroup>

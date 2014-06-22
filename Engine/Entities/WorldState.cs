@@ -7,6 +7,7 @@ namespace PostalService.Engine.Entities
         public WorldState(double width, double height)
         {
             Packages = new List<Package>();
+            Customers = new List<Customer>();
             Postmans = new List<Postman>();
 
             Width = width;
@@ -18,6 +19,8 @@ namespace PostalService.Engine.Entities
         public double Height { get; private set; }
 
         public IList<Package> Packages { get; private set; }
+
+        public IList<Customer> Customers { get; private set; }
 
         public IList<Postman> Postmans { get; private set; }
     }

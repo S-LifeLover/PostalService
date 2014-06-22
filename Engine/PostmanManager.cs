@@ -25,23 +25,30 @@ namespace PostalService.Engine
         private void TimerCallback(object state)
         {
             var postmans = _worldState.Postmans.ToList();
+
             var freePostmans = postmans.Where(p => p.Destination == null).ToList();
-            freePostmans.ForEach(SetDestinationPackage);
+            freePostmans.ForEach(FindJob);
 
             postmans.ForEach(Move);
 
-            var postmansWithDeliveredPackage = postmans.Where(p => p.Location == p.Destination).ToList();
+            //ToDo: корявая логика
+            var postmansOnDestination = postmans.Where(p => p.Location == p.Destination).ToList();
+            foreach (var postman in postmansOnDestination)
+            {
+                var customer = _worldState.Customers.FirstOrDefault(c => c.Location == postman.Location);
+                if (customer == null)
+                    continue;
+                postman.TakePackage(customer.Package);
+                _worldState.Customers.Remove(customer);
+            }
         }
 
-        private void SetDestinationPackage(Postman postman)
+        //ToDO: в текущей реализации берем первого попавшегося клиента. В будущем надо бы изменить логику
+        private void FindJob(Postman postman)
         {
-            var packagesInDelivery = _worldState.Postmans.Select(p => p.Package).Distinct();
-            var freePackages =
-                _worldState.Packages.Where(p => !packagesInDelivery.Contains(p))
-                    .ToDictionary(p => p.Location.DistanceTo(postman.Location));
-            var closestPackage = freePackages.OrderBy(kvp => kvp.Key).Select(kvp => kvp.Value).FirstOrDefault();
-            if (closestPackage != null)
-                postman.SetDestination(closestPackage.Location);
+            var customer = _worldState.Customers.FirstOrDefault();
+            if (customer != null)
+                postman.SetDestination(customer.Location);
         }
 
         private static void Move(Postman postman)
