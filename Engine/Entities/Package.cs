@@ -8,6 +8,7 @@
             Destination = destination;
         }
 
+        // ToDo: убрать это свойство. Вместо этого посылка должна лежать в свойство объекта IPackageHolder
         public Location Location { get; private set; }
 
         public Location Destination { get; private set; }

@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ToDo.txt" />
     <Compile Include="EngineFacade.cs" />
-    <Compile Include="Entities\Location.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Entities\Postman.cs" />
     <Compile Include="Entities\Package.cs" />
+    <Compile Include="PostmanManager.cs" />
     <Compile Include="WorldStateFactory.cs" />
     <Compile Include="PackageGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
