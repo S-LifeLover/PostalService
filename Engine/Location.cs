@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace PostalService.Engine
 {
@@ -52,8 +53,9 @@ namespace PostalService.Engine
             var sin = totalDistance / (location.Y - Y);
             var cos = totalDistance / (location.X - X);
 
-            var distanceY = distance * sin;
-            var distanceX = distance * cos;
+            var distanceY = distance / sin;
+            var distanceX = distance / cos;
+
             return new Location(X + distanceX, Y + distanceY);
         }
 

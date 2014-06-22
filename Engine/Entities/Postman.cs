@@ -6,7 +6,7 @@ namespace PostalService.Engine.Entities
     {
         // Скорость пиксели в одну десятую секунды
         // ToDO: через конфиг
-        private const double _speedPixelsPerSecond = 1;
+        private const double _speedPixelsPerSecond = 3;
 
         public Postman(Location location)
         {
