@@ -1,15 +1,15 @@
 ﻿using System;
+using PostalService.Engine.Configuration;
 
 namespace PostalService.Engine.Entities
 {
     public sealed class Postman
     {
-        // Скорость пиксели в одну десятую секунды
-        // ToDO: через конфиг
-        private const double _speedPixelsPerSecond = 3;
+        private readonly IConfigurationProvider _configurationProvider;
 
-        public Postman(Location location)
+        public Postman(IConfigurationProvider configurationProvider, Location location)
         {
+            _configurationProvider = configurationProvider;
             Location = location;
         }
 
@@ -26,7 +26,7 @@ namespace PostalService.Engine.Entities
             if (Destination == null)
                 return;
 
-            Location = Location.ApproachTo((Location)Destination, _speedPixelsPerSecond);
+            Location = Location.ApproachTo((Location)Destination, _configurationProvider.PostmanSpeed);
         }
 
         public void SetDestination(Location location)

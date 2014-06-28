@@ -12,8 +12,8 @@ namespace PostalService.Engine
 
         public EngineFacade()
         {
-            var worldStateFactory = new WorldStateFactory();
             var configurationProvider = new ConfigurationProvider();
+            var worldStateFactory = new WorldStateFactory(configurationProvider);
             _worldState = worldStateFactory.Create();
 
             _customerGenerator = new CustomerGenerator(_worldState, configurationProvider);
