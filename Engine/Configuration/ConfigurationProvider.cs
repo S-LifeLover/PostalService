@@ -34,8 +34,7 @@ namespace PostalService.Engine.Configuration
         {
             int result;
             if (!int.TryParse(ConfigurationManager.AppSettings[settingName], out result))
-                // ToDO: исключение по-приличнее нужно
-                throw new Exception();
+                throw ConstructException(settingName, ConfigurationManager.AppSettings[settingName], typeof(int));
             return result;
         }
 
@@ -43,9 +42,18 @@ namespace PostalService.Engine.Configuration
         {
             double result;
             if (!double.TryParse(ConfigurationManager.AppSettings[settingName], out result))
-                // ToDO: исключение по-приличнее нужно
-                throw new Exception();
+                throw ConstructException(settingName, ConfigurationManager.AppSettings[settingName], typeof(int));
             return result;
+        }
+
+        private static PostalServiceException ConstructException(string settingName, string settingValue, Type settingType)
+        {
+            return new PostalServiceException(
+                string.Format(
+                    @"Can not read setting {0}: Value {1} can not be parsed to {2} type",
+                    settingName,
+                    settingValue,
+                    settingType.Name));
         }
     }
 }
