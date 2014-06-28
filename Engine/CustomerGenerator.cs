@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Threading;
+using PostalService.Engine.Configuration;
 using PostalService.Engine.Entities;
 
 namespace PostalService.Engine
 {
     internal sealed class CustomerGenerator : IDisposable
     {
-        internal CustomerGenerator(WorldState worldState)
+        private readonly WorldState _worldState;
+
+        private readonly Random _random;
+
+        private readonly Timer _timer;
+
+        internal CustomerGenerator(WorldState worldState, IConfigurationProvider configurationProvider)
         {
             _worldState = worldState;
             _random = new Random();
-            _timer = new Timer(TimerCallback, null, 1000, 1000);
+            _timer = new Timer(TimerCallback, null, configurationProvider.CustomerCreationDelay, configurationProvider.CustomerCreationDelay);
         }
 
         public void Dispose()
@@ -42,12 +49,5 @@ namespace PostalService.Engine
             var y = _random.NextDouble() * _worldState.Height;
             return new Location(x, y);
         }
-
-        private readonly WorldState _worldState;
-
-        private readonly Random _random;
-
-        // ToDO: настроить время появления посылки
-        private readonly Timer _timer;
     }
 }

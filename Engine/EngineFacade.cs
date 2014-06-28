@@ -1,4 +1,5 @@
 ﻿using System;
+using PostalService.Engine.Configuration;
 using PostalService.Engine.Entities;
 
 namespace PostalService.Engine
@@ -12,9 +13,10 @@ namespace PostalService.Engine
         public EngineFacade()
         {
             var worldStateFactory = new WorldStateFactory();
+            var configurationProvider = new ConfigurationProvider();
             _worldState = worldStateFactory.Create();
 
-            _customerGenerator = new CustomerGenerator(_worldState);
+            _customerGenerator = new CustomerGenerator(_worldState, configurationProvider);
             _postmanManager = new PostmanManager(_worldState);
         }
 
