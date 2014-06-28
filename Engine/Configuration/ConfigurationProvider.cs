@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace PostalService.Engine.Configuration
 {
-    public sealed class ConfigurationProvider : IConfigurationProvider
+    internal sealed class ConfigurationProvider : IConfigurationProvider
     {
         public int CustomerCreationDelay
         {

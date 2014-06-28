@@ -2,7 +2,7 @@
 
 namespace PostalService.Engine
 {
-    class PostalServiceException : Exception
+    public class PostalServiceException : Exception
     {
         public PostalServiceException(string message)
             : base(message)

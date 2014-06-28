@@ -3,6 +3,7 @@ using PostalService.Engine.Configuration;
 
 namespace PostalService.Engine.Entities
 {
+    // ToDo: сделать интернал
     public sealed class Postman
     {
         private readonly IConfigurationProvider _configurationProvider;

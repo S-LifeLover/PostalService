@@ -1,5 +1,6 @@
 ﻿namespace PostalService.Engine.Entities
 {
+    // ToDo: сделать интернал
     public sealed class Package
     {
         public Package(Location destination)

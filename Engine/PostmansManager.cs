@@ -5,13 +5,13 @@ using PostalService.Engine.Entities;
 
 namespace PostalService.Engine
 {
-    internal sealed class PostmanManager : IDisposable
+    internal sealed class PostmansManager : IDisposable
     {
         private readonly WorldState _worldState;
         // ToDO: Задавать через настройки
         private readonly Timer _timer;
 
-        internal PostmanManager(WorldState worldState)
+        internal PostmansManager(WorldState worldState)
         {
             _worldState = worldState;
             _timer = new Timer(TimerCallback, null, 100, 100);

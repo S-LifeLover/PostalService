@@ -8,7 +8,7 @@ namespace PostalService.Engine
     {
         private readonly WorldState _worldState;
         private readonly CustomerGenerator _customerGenerator;
-        private readonly PostmanManager _postmanManager;
+        private readonly PostmansManager _postmanManager;
 
         public EngineFacade()
         {
@@ -17,9 +17,10 @@ namespace PostalService.Engine
             _worldState = worldStateFactory.Create();
 
             _customerGenerator = new CustomerGenerator(_worldState, configurationProvider);
-            _postmanManager = new PostmanManager(_worldState);
+            _postmanManager = new PostmansManager(_worldState);
         }
 
+        // ToDo: Нужно сделать специальные публичные сущности, которые и отсылать
         public WorldState GetState()
         {
             return _worldState;

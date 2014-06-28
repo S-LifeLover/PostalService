@@ -1,5 +1,6 @@
 ﻿namespace PostalService.Engine.Configuration
 {
+    // ToDO: сделать интернал
     public interface IConfigurationProvider
     {
         int CustomerCreationDelay { get; }

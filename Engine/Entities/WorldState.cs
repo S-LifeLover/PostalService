@@ -2,6 +2,7 @@
 
 namespace PostalService.Engine.Entities
 {
+    // ToDo: сделать интернал
     public sealed class WorldState
     {
         public WorldState(double width, double height)
