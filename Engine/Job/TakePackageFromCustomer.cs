@@ -1,4 +1,5 @@
 ﻿using PostalService.Engine.Entities;
+using PostalService.Engine.Postmans;
 
 namespace PostalService.Engine.Job
 {

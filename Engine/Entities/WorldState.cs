@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PostalService.Engine.Postmans;
 
 namespace PostalService.Engine.Entities
 {

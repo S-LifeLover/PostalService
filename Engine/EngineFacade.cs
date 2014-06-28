@@ -1,6 +1,7 @@
 ﻿using System;
 using PostalService.Engine.Configuration;
 using PostalService.Engine.Entities;
+using PostalService.Engine.Postmans;
 
 namespace PostalService.Engine
 {
@@ -17,7 +18,7 @@ namespace PostalService.Engine
             _worldState = worldStateFactory.Create();
 
             _customerGenerator = new CustomerGenerator(_worldState, configurationProvider);
-            _postmanManager = new PostmansManager(_worldState);
+            _postmanManager = new PostmansManager(_worldState, configurationProvider);
         }
 
         // ToDo: Нужно сделать специальные публичные сущности, которые и отсылать

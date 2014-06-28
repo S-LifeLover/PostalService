@@ -30,6 +30,11 @@ namespace PostalService.Engine.Configuration
             get { return GetDoubleSetting("WorldHeight"); }
         }
 
+        public int FPS
+        {
+            get { return GetIntSetting("FPS"); }
+        }
+
         private static int GetIntSetting(string settingName)
         {
             int result;

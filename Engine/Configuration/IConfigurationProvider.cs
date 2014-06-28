@@ -12,5 +12,7 @@
         double WorldWidth { get; }
 
         double WorldHeight { get; }
+
+        int FPS { get; }
     }
 }

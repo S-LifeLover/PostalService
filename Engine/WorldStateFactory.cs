@@ -1,5 +1,6 @@
 ﻿using PostalService.Engine.Configuration;
 using PostalService.Engine.Entities;
+using PostalService.Engine.Postmans;
 
 namespace PostalService.Engine
 {

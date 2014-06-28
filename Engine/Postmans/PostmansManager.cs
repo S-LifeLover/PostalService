@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
+using PostalService.Engine.Configuration;
 using PostalService.Engine.Entities;
 
-namespace PostalService.Engine
+namespace PostalService.Engine.Postmans
 {
     internal sealed class PostmansManager : IDisposable
     {
         private readonly WorldState _worldState;
-        // ToDO: Задавать через настройки
         private readonly Timer _timer;
 
-        internal PostmansManager(WorldState worldState)
+        internal PostmansManager(WorldState worldState, IConfigurationProvider configurationProvider)
         {
             _worldState = worldState;
-            _timer = new Timer(TimerCallback, null, 100, 100);
+            var period = 1000 / configurationProvider.FPS;
+            _timer = new Timer(TimerCallback, null, period, period);
         }
 
         public void Dispose()
@@ -56,6 +57,7 @@ namespace PostalService.Engine
             postman.MoveToDestination();
         }
 
+        // ToDO
         private static void CompletePackage(Postman postman)
         {
             throw new NotImplementedException("CompletePackage");

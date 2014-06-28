@@ -49,10 +49,10 @@
     <Compile Include="Job\TakePackageFromCustomer.cs" />
     <Compile Include="Job\IJob.cs" />
     <Compile Include="Location.cs" />
-    <Compile Include="Entities\Postman.cs" />
+    <Compile Include="Postmans\Postman.cs" />
     <Compile Include="Entities\Package.cs" />
     <Compile Include="PostalServiceException.cs" />
-    <Compile Include="PostmansManager.cs" />
+    <Compile Include="Postmans\PostmansManager.cs" />
     <Compile Include="WorldStateFactory.cs" />
     <Compile Include="CustomerGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

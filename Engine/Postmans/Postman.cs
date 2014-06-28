@@ -1,7 +1,8 @@
 ﻿using System;
 using PostalService.Engine.Configuration;
+using PostalService.Engine.Entities;
 
-namespace PostalService.Engine.Entities
+namespace PostalService.Engine.Postmans
 {
     // ToDo: сделать интернал
     public sealed class Postman
