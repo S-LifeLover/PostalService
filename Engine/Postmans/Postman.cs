@@ -32,7 +32,7 @@ namespace PostalService.Engine.Postmans
         // ToDo: Сделать паблик
         internal void AddSender(Customer customer)
         {
-            if (_senders.Any() || customer == null)
+            if (customer == null)
                 return;
             _senders.Add(customer);
         }

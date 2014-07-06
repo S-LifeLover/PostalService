@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using PostalService.Engine.Configuration;
@@ -10,6 +11,7 @@ namespace PostalService.Engine.Postmans
     {
         private readonly WorldState _worldState;
         private readonly Timer _timer;
+        private IDictionary<Customer, Postman> _handledCustomers = new Dictionary<Customer, Postman>();
 
         internal PostmansManager(WorldState worldState, IConfigurationProvider configurationProvider)
         {
@@ -25,11 +27,21 @@ namespace PostalService.Engine.Postmans
 
         private void TimerCallback(object state)
         {
-            // ToDo: перееделать
-            var postman = _worldState.Postmans.Single();
-            postman.AddSender(_worldState.Customers.FirstOrDefault());
-
+            HandleNewCustomers();
             ActPostmans();
+        }
+
+        private void HandleNewCustomers()
+        {
+            // ToDo: добавить поддержку нескольких почтальонов
+            var postman = _worldState.Postmans.Single();
+
+            var newCustomers = _worldState.Customers.Except(_handledCustomers.Keys).ToList();
+            newCustomers.ForEach(customer =>
+            {
+                _handledCustomers.Add(customer, postman);
+                postman.AddSender(customer);
+            });
         }
 
         private void ActPostmans()
