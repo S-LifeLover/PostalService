@@ -25,42 +25,16 @@ namespace PostalService.Engine.Postmans
 
         private void TimerCallback(object state)
         {
-            var postmans = _worldState.Postmans.ToList();
+            // ToDo: перееделать
+            var postman = _worldState.Postmans.Single();
+            postman.AddSender(_worldState.Customers.FirstOrDefault());
 
-            var freePostmans = postmans.Where(p => p.Destination == null).ToList();
-            freePostmans.ForEach(FindJob);
-
-            postmans.ForEach(Move);
-
-            //ToDo: корявая логика
-            var postmansOnDestination = postmans.Where(p => p.Location == p.Destination).ToList();
-            foreach (var postman in postmansOnDestination)
-            {
-                var customer = _worldState.Customers.FirstOrDefault(c => c.Location == postman.Location);
-                if (customer == null)
-                    continue;
-                postman.TakePackage(customer.Package);
-                _worldState.Customers.Remove(customer);
-            }
+            ActPostmans();
         }
 
-        //ToDO: в текущей реализации берем первого попавшегося клиента. В будущем надо бы изменить логику
-        private void FindJob(Postman postman)
+        private void ActPostmans()
         {
-            var customer = _worldState.Customers.FirstOrDefault();
-            if (customer != null)
-                postman.SetDestination(customer.Location);
-        }
-
-        private static void Move(Postman postman)
-        {
-            postman.MoveToDestination();
-        }
-
-        // ToDO
-        private static void CompletePackage(Postman postman)
-        {
-            throw new NotImplementedException("CompletePackage");
+            _worldState.Postmans.ToList().ForEach(p => p.Act());
         }
     }
 }

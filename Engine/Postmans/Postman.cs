@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 using PostalService.Engine.Configuration;
 using PostalService.Engine.Entities;
 
@@ -7,6 +8,12 @@ namespace PostalService.Engine.Postmans
     // ToDo: сделать интернал
     public sealed class Postman
     {
+        public Location Location { get; private set; }
+
+        private readonly List<Package> _packages = new List<Package>();
+
+        private readonly List<Customer> _senders = new List<Customer>();
+
         private readonly IConfigurationProvider _configurationProvider;
 
         public Postman(IConfigurationProvider configurationProvider, Location location)
@@ -15,35 +22,29 @@ namespace PostalService.Engine.Postmans
             Location = location;
         }
 
-        public Location Location { get; private set; }
-
-        // ToDo: Может как-то сделать через стратегии или типа того?
-        public Location? Destination { get; private set; }
-
-        public Package Package { get; private set; }
-
-        //ToDO: все не так. Все переделать
-        public void MoveToDestination()
+        public void Act()
         {
-            if (Destination == null)
+            var customer = _senders.FirstOrDefault();
+            if (customer != null)
+                MoveTo(customer.Location);
+        }
+
+        // ToDo: Сделать паблик
+        internal void AddSender(Customer customer)
+        {
+            if (_senders.Any() || customer == null)
                 return;
-
-            Location = Location.ApproachTo((Location)Destination, _configurationProvider.PostmanSpeed);
+            _senders.Add(customer);
         }
 
-        public void SetDestination(Location location)
+        private void MoveTo(Location destination)
         {
-            Destination = location;
+            Location = Location.ApproachTo(destination, _configurationProvider.PostmanSpeed);
         }
 
-        public void TakePackage(Package package)
+        private void TakePackage(Package package)
         {
-            // ToDo: коряво
-            if (Package != null)
-                throw new Exception();
-
-            Package = package;
-            Destination = package.Destination;
+            _packages.Add(package);
         }
     }
 }

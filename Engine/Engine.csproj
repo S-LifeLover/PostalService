@@ -46,8 +46,6 @@
     <Compile Include="Configuration\IConfigurationProvider.cs" />
     <Compile Include="EngineFacade.cs" />
     <Compile Include="Entities\Customer.cs" />
-    <Compile Include="Job\TakePackageFromCustomer.cs" />
-    <Compile Include="Job\IJob.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Postmans\Postman.cs" />
     <Compile Include="Entities\Package.cs" />

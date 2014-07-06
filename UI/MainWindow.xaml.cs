@@ -54,18 +54,6 @@ namespace PostalService.UI
                 Canvas.SetLeft(ellipse, postman.Location.X - 3);
                 Canvas.SetTop(ellipse, postman.Location.Y - 3);
                 MainCanvas.Children.Add(ellipse);
-
-                if (postman.Destination == null)
-                    continue;
-                var destinationLine = new Line
-                {
-                    Stroke = new SolidColorBrush(Colors.Yellow),
-                    X1 = postman.Location.X,
-                    Y1 = postman.Location.Y,
-                    X2 = postman.Destination.Value.X,
-                    Y2 = postman.Destination.Value.Y
-                };
-                MainCanvas.Children.Add(destinationLine);
             }
         }
 
